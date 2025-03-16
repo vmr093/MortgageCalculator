@@ -50,10 +50,12 @@ const MortgageCalculator = ({ setResults }) => {
         label="Mortgage Amount"
         name="amount"
         register={register}
-        onChange={(value) => setValue("amount", value)} // ✅ Ensures value persists
-        value={getValues("amount")} // ✅ Keeps the value stored
+        onChange={(value) => setValue("amount", value)}
+        value={getValues("amount")} // ✅ Ensures value remains formatted
         currency="$"
-      />
+        allowDecimal={true}
+        />
+
 
       <InputRow>
         <InputField

@@ -9,13 +9,14 @@ const InputField = ({ label, name, register, onChange, value, unit, currency, al
       <InputWrapper>
         {currency && <Prefix>{currency}</Prefix>}
         <StyledInput
-          value={value} // ✅ Ensures value is controlled
+          value={value} // ✅ Ensures controlled value
           customInput={NumericFormat}
-          thousandSeparator={true}
-          decimalScale={allowDecimal ? 2 : 0} // Allow decimals for interest rate
-          fixedDecimalScale={allowDecimal}
+          thousandSeparator="," // ✅ Adds commas for thousands
+          decimalScale={2} // ✅ Always show 2 decimal places
+          fixedDecimalScale={true} // ✅ Ensures .00 formatting
           allowNegative={false}
-          prefix={currency ? `${currency} ` : ""}
+          allowLeadingZeros={true} // ✅ Keeps leading zeros
+          prefix={currency ? `${currency} ` : ""} // ✅ Adds the $ symbol
           onValueChange={(values) => onChange(values.value)}
         />
         {unit && <Unit>{unit}</Unit>}
@@ -53,6 +54,10 @@ const StyledInput = styled(NumericFormat)`
   outline: none;
   padding: 10px;
   font-size: 16px;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    font-size: 14px;
 `;
 
 const Unit = styled.span`
