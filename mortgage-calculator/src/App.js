@@ -30,8 +30,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  height: 70vh;
+  width: 70vw;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   background: #EAF4FA;
 `;
 
@@ -54,5 +55,6 @@ const RightPanel = styled.div`
   background: #162C41;
   padding: 30px;
 `;
+
 
 export default App;

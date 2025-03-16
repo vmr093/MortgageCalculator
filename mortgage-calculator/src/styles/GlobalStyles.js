@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   body {
-    background: #EAF4FA url("/background.png") no-repeat center center;
+    background: url("/background.png") no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
