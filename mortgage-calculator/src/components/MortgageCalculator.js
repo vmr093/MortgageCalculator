@@ -14,7 +14,12 @@ const schema = yup.object().shape({
 });
 
 const MortgageCalculator = ({ setResults }) => {
-  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
+  const {
+    register,
+    handleSubmit,
+    setValue,  // ✅ Ensure setValue is available
+    getValues, // ✅ Helps to persist values
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
     const { amount, years, rate, type } = data;
@@ -39,70 +44,62 @@ const MortgageCalculator = ({ setResults }) => {
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
-      <TopBar>
-        <h2>Mortgage Calculator</h2>
-        <ClearAll>Clear All</ClearAll>
-      </TopBar>
+      <h2>Mortgage Calculator</h2>
 
-      <InputField label="Mortgage Amount" type="number" name="amount" register={register} />
-      <Row>
-        <InputField label="Mortgage Term" type="number" name="years" register={register} />
-        <span>years</span>
-        <InputField label="Interest Rate" type="number" name="rate" register={register} />
-        <span>%</span>
-      </Row>
+      <InputField
+        label="Mortgage Amount"
+        name="amount"
+        register={register}
+        onChange={(value) => setValue("amount", value)} // ✅ Ensures value persists
+        value={getValues("amount")} // ✅ Keeps the value stored
+        currency="$"
+      />
 
-      <RadioGroup>
-        <RadioButton name="type" label="Repayment" value="Repayment" register={register} defaultChecked />
-        <RadioButton name="type" label="Interest Only" value="Interest Only" register={register} />
-      </RadioGroup>
+      <InputRow>
+        <InputField
+          label="Mortgage Term"
+          name="years"
+          register={register}
+          onChange={(value) => setValue("years", value)}
+          value={getValues("years")} // ✅ Ensures Mortgage Term value persists
+          unit="years"
+          allowDecimal={false}
+        />
+        <InputField
+          label="Interest Rate"
+          name="rate"
+          register={register}
+          onChange={(value) => setValue("rate", value)}
+          value={getValues("rate")} // ✅ Ensures Interest Rate value persists
+          unit="%"
+          allowDecimal={true}
+        />
+      </InputRow>
 
-      <SubmitButton type="submit">Calculate Repayments</SubmitButton>
+      <RadioButton name="type" label="Repayment" value="Repayment" register={register} defaultChecked />
+      <RadioButton name="type" label="Interest Only" value="Interest Only" register={register} />
+
+      <button type="submit">Calculate Repayments</button>
     </FormContainer>
   );
 };
 
 const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-
-const TopBar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const ClearAll = styled.span`
-  font-size: 12px;
-  color: #666;
-  cursor: pointer;
-`;
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const RadioGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
-const SubmitButton = styled.button`
-  background: #C6D43C;
-  color: black;
-  border: none;
-  padding: 10px;
+  background: #fff;
+  padding: 20px;
   border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+`;
 
-  &:hover {
-    background: #AEBF30;
+const InputRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 5px;
   }
 `;
 
