@@ -18,7 +18,8 @@ A fully responsive mortgage calculator that allows users to input mortgage amoun
 
 ## 📸 Preview
 
-![Mortgage Calculator Screenshot](./public/screenshot.png)
+![Mortgage Calculator Screenshot] <img width="1378" alt="Screenshot 2025-03-16 at 6 55 35 AM" src="https://github.com/user-attachments/assets/90c47b36-cf8d-4eeb-af64-bba87bde826a" />
+
 
 ---
 
@@ -46,9 +47,10 @@ The mortgage calculator follows a **clean and modern UI**, inspired by financial
 ## 📦 Installation & Setup
 
 1️⃣ **Clone this repository**  
-```bash
+
 git clone https://github.com/vmr093/MortgageCalculator.git
 cd MortgageCalculator
+
 📲 Responsive Design
 📱 Mobile-Friendly:
 
@@ -67,7 +69,7 @@ Export results as PDF/CSV
 
 Ensure proper validation for edge-case inputs
 🏆 Credits
-💡 Developed by: [Your Name]
+💡 Developed by: Viola Ranjha
 🎨 UI Design Inspiration: Various financial calculators
 💻 Built with: React.js, Styled Components, React Hook Form
 
@@ -77,6 +79,3 @@ This project is licensed under the MIT License.
 🌟 Show Your Support!
 If you like this project, please ⭐ Star this repository and share your feedback! 🚀
 
-markdown
-Copy
-Edit
